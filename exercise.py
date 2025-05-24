@@ -55,7 +55,7 @@ def check_voting_eligibility():
             print("Please enter a positive number.")
             return
         voting_age = 18
-        if age >- voting_age:
+        if age >= voting_age:
             print("You are eligible for voting.")
         else:
             print("You are not eligible for voting.")
@@ -84,7 +84,110 @@ check_voting_eligibility()
 # - Apply conditional logic to perform the correct age calculation based on the dog's age.
 
 def calculate_dog_years():
-    # Your control flow logic goes here
+    try:
+        age = int(input("Input a dog's age: "))
+
+        if age < 0:
+            print("Please enter a positive number.")
+            return
+
+        if age == 1:
+            dog_years = 10
+        elif age == 2:
+            dog_years = 20
+        else:
+            dog_years = 20 + (age -2) * 7
+
+        print(f"The dog's age in dog years is {dog_years}.")
+    except ValueError:
+        print("Please enter a valid number.")
 
 # Call the function
 calculate_dog_years()
+
+
+# Exercise 4: Weather Advice
+#
+# Write a Python script named `weather_advice` that provides clothing advice based on weather conditions.
+#
+# Requirements:
+# - The script should prompt the user to enter if it is cold (yes/no).
+# - Then, ask if it is raining (yes/no).
+# - Use logical operators to determine clothing advice:
+#   - If it is cold AND raining, print "Wear a waterproof coat."
+#   - If it is cold BUT NOT raining, print "Wear a warm coat."
+#   - If it is NOT cold but raining, print "Carry an umbrella."
+#   - If it is NOT cold AND NOT raining, print "Wear light clothing."
+#
+# Hints:
+# - Use logical operators (`AND`, `OR`, `NOT`) in your if statements to handle multiple conditions.
+
+def weather_advice():
+   cold = input("Is it cold? (yes/no): ").lower()
+   raining = input("Is it raining? (yes/no): ").lower()
+
+   valid_responses = {"yes", "no"}
+   if cold not in valid_responses or raining not in valid_responses:
+       print("Please enter a valid response.")
+       return
+
+   if cold == "yes" and raining == "yes":
+       print("Wear a waterproof coat")
+   elif cold == "yes" and raining == "no":
+        print("Wear a warm coat")
+   elif cold == "no" and raining == "yes":
+        print("Carry an umbrella")
+   elif cold == "no" and raining == "no":
+        print("Wear light clothing")
+
+# Call the function
+weather_advice()
+
+
+# Exercise 5: What's the Season?
+#
+# Write a Python function named `determine_season` that figures out the season based on the entered date.
+#
+# Requirements:
+# - The function should first prompt the user to enter the month (as three characters): "Enter the month of the year (Jan - Dec):"
+# - Then, the function should prompt the user to enter the day of the month: "Enter the day of the month:"
+# - Determine the current season based on the date:
+#      - Dec 21 - Mar 19: Winter
+#      - Mar 20 - Jun 20: Spring
+#      - Jun 21 - Sep 21: Summer
+#      - Sep 22 - Dec 20: Fall
+# - Print the season for the entered date in the format: "<Mmm> <dd> is in <season>."
+#
+# Hints:
+# - Use 'in' to check if a string is in a list or tuple.
+# - Adjust the season based on the day of the month when needed.
+# - Ensure to validate input formats and handle unexpected inputs gracefully.
+
+def determine_season():
+    month = input("Enter the month of the year (Jan - Dec): ").strip().capitalize()
+    day = input("Enter the day of the month: ")
+    valid_months={"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
+
+    try:
+        day=int(day)
+        if month not in valid_months or day < 1 or day > 31:
+            print("Please enter a valid month or day.")
+            return
+    except ValueError:
+        print("Please enter a valid month or day.")
+        return
+
+    if (month == "Dec" and day >= 21) or (month in {"Jan", "Feb"}) or (month == "Mar" and day <= 19):
+        season = "Winter"
+    elif (month == "Mar" and day >= 20) or (month in {"Apr", "May"}) or (month == "Jun" and day <= 20):
+        season = "Spring"
+    elif (month == "Jun" and day >= 21) or (month in {"Jul", "Aug"}) or (month == "Sep" and day <= 21):
+        season = "Summer"
+    else:
+        season = "Fall"
+    print(f"{month} - {day} is in {season}")
+
+# Call the function
+determine_season()
+
+
